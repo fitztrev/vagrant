@@ -1,0 +1,21 @@
+{
+	"default": {
+		"ssh_forward_agent": true,
+		"domain": "dev.local",
+		"box_url": "boxes/raring-server-cloudimg-i386-vagrant-disk1.box",
+		"scripts": [
+		]
+	},
+	"boxes": {
+		"web": {
+			"ip": "192.168.240.100",
+			"forward": {
+				"8080": 80,
+				"8443": 443,
+				"9001": 9001
+			},
+			"scripts": [
+			]
+		}
+	}
+}
