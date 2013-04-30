@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # All settings are in `boxes.json`. Let's start by parsing that
-boxes = JSON.parse(File.read('boxes.json'), :symbolize_names => true)
+boxes = JSON.parse(File.read('vagrant.json'), :symbolize_names => true)
 
 ###
 
@@ -21,6 +21,12 @@ Vagrant.configure("2") do |config|
 		if boxes[:default][:scripts]
 			boxes[:default][:scripts].each do |script|
 				config.vm.provision :shell, :path => script
+			end
+		end
+
+		if boxes[:default][:synced_folders]
+			boxes[:default][:synced_folders].each_pair do |host,guest|
+				config.vm.synced_folder host.to_s, guest.to_s
 			end
 		end
 

@@ -2,7 +2,10 @@
 	"default": {
 		"ssh_forward_agent": true,
 		"domain": "dev.local",
-		"box_url": "boxes/raring-server-cloudimg-i386-vagrant-disk1.box",
+		"box_url": "boxes/raring-server-cloudimg-amd64-vagrant-disk1.box",
+		"synced_folders": {
+			"~/app": "/var/www/app"
+		},
 		"scripts": [
 		]
 	},
