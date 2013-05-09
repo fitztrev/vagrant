@@ -41,7 +41,9 @@ Vagrant.configure("2") do |config|
 				box.vm.hostname = "%s.%s" % [name.to_s, boxes[:default][:domain]]
 				box.vm.provider :virtualbox do |vb|
 					vb.name = name.to_s
-					vb.customize ["modifyvm", :id, "--memory", 1024]
+					if atts[:memory]
+						vb.customize ["modifyvm", :id, "--memory", atts[:memory]]
+					end
 				end
 
 				# If private IP specified, set it up
