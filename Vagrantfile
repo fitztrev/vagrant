@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
 		if boxes[:default][:synced_folders]
 			boxes[:default][:synced_folders].each_pair do |host,guest|
-				config.vm.synced_folder host.to_s, guest.to_s
+				config.vm.synced_folder host.to_s, guest.to_s, :extra => "dmode=777,fmode=777"
 			end
 		end
 
@@ -62,6 +62,11 @@ Vagrant.configure("2") do |config|
 				if atts[:scripts]
 					atts[:scripts].each do |script|
 						box.vm.provision :shell, :path => script
+					end
+				end
+				if atts[:inline]
+					atts[:inline].each do |command|
+						box.vm.provision :shell, :inline => command
 					end
 				end
 
