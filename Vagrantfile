@@ -37,10 +37,10 @@ Vagrant.configure("2") do |config|
 			config.vm.define name do |box|
 
 				# Set the VM name and hostname
-				box.vm.box = name.to_s
+				box.vm.box = "%s-%s" % [boxes[:default][:project], name.to_s]
 				box.vm.hostname = "%s.%s" % [name.to_s, boxes[:default][:domain]]
 				box.vm.provider :virtualbox do |vb|
-					vb.name = name.to_s
+					vb.name = "%s-%s" % [boxes[:default][:project], name.to_s]
 					if atts[:memory]
 						vb.customize ["modifyvm", :id, "--memory", atts[:memory]]
 					end
