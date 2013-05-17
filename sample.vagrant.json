@@ -1,5 +1,6 @@
 {
 	"default": {
+		"project": "my-project",
 		"ssh_forward_agent": true,
 		"domain": "dev.local",
 		"box_url": "boxes/raring-server-cloudimg-amd64-vagrant-disk1.box",
