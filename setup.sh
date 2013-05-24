@@ -21,7 +21,7 @@ rm -f logs/*.log
 vagrant up --no-provision
 
 # Parse the JSON file to figure out which boxes we need to provision
-cat vagrant.json | ruby -e "require 'rubygems'; require 'json'; JSON[STDIN.read]['boxes'].each_pair do |box,options| puts box end;" | parallel_provision
+cat vagrant.json | ruby -e "require 'rubygems'; require 'json'; JSON[STDIN.read]['boxes'].each_pair do |box,options| if options['enabled']: puts box end; end;" | parallel_provision
 
 # Done
 END=$(date +%s)

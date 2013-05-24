@@ -12,6 +12,7 @@
 	},
 	"boxes": {
 		"web": {
+			"enabled": true,
 			"ip": "192.168.240.100",
 			"memory": 1024,
 			"forward": {
