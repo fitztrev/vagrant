@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
 		if boxes[:default][:synced_folders]
 			boxes[:default][:synced_folders].each_pair do |host,guest|
-				config.vm.synced_folder host.to_s, guest.to_s, :extra => "dmode=777,fmode=777"
+				config.vm.synced_folder host.to_s, guest.to_s, :owner=> 'www-data', :group=>'www-data'
 			end
 		end
 
