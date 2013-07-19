@@ -27,3 +27,7 @@ cat vagrant.json | ruby -e "require 'rubygems'; require 'json'; JSON[STDIN.read]
 END=$(date +%s)
 DIFF=$(( $END - $START ))
 echo "Servers deployed in $DIFF seconds"
+
+if type "terminal-notifier" > /dev/null; then
+	terminal-notifier -message "Vagrant setup complete"
+fi
