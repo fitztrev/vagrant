@@ -5,7 +5,7 @@ START=$(date +%s)
 
 # Max concurrent procs for xargs
 MAX_PROCS=4
- 
+
 parallel_provision() {
     while read box; do
         echo "Provisioning '$box'. Output will be in: logs/$box.log" 1>&2
@@ -16,12 +16,12 @@ parallel_provision() {
 
 # Remove old log files
 rm -f logs/*.log
- 
+
 # Start boxes sequentially to avoid vbox explosions
-vagrant up --no-provision
+#vagrant up --no-provision
 
 # Parse the JSON file to figure out which boxes we need to provision
-cat vagrant.json | ruby -e "require 'rubygems'; require 'json'; JSON[STDIN.read]['boxes'].each_pair do |box,options| if options['enabled']: puts box end; end;" | parallel_provision
+cat vagrant.json | ruby -e "require 'rubygems'; require 'json'; JSON[STDIN.read]['boxes'].each_pair do |box,options| if options['enabled'] then puts box end end" | parallel_provision
 
 # Done
 END=$(date +%s)
