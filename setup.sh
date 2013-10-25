@@ -18,7 +18,7 @@ parallel_provision() {
 rm -f logs/*.log
 
 # Start boxes sequentially to avoid vbox explosions
-#vagrant up --no-provision
+vagrant up --no-provision
 
 # Parse the JSON file to figure out which boxes we need to provision
 cat vagrant.json | ruby -e "require 'rubygems'; require 'json'; JSON[STDIN.read]['boxes'].each_pair do |box,options| if options['enabled'] then puts box end end" | parallel_provision
